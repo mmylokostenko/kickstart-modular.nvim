@@ -54,3 +54,15 @@ The configuration is modularized for better maintainability:
 *   **Formatting:** Lua files should be formatted using `stylua`. The repository includes a GitHub Action (`.github/workflows/stylua.yml`) to enforce this.
 *   **Health Checks:** If encountering issues, run `:checkhealth` within Neovim to diagnose missing dependencies or configuration errors.
 *   **Documentation:** Read the comments throughout the configuration files. They frequently reference Neovim help pages (e.g., `:help vim.o`) to encourage learning.
+
+## 7. AI Agent Instructions
+
+When AI agents (like Gemini) interact with this repository, they MUST adhere to the following rules:
+
+*   **Preserve the Kickstart Philosophy:** Do NOT introduce overly complex, bloated "distribution-like" frameworks. This config is meant to be highly readable, minimal, and educational. Preserve all existing explanatory comments, as they are a core feature.
+*   **Modularity over Monolith:** When asked to add a new plugin or feature, DO NOT modify `init.lua` directly.
+    *   Place all new plugin configurations in `lua/custom/plugins/` (as a new `.lua` file returning a `lazy.nvim` spec).
+    *   Place custom global autocommands in `lua/custom/autocmd.lua`.
+    *   Place custom global keymaps in `lua/keymaps.lua` (or within the respective plugin spec if they are plugin-specific).
+*   **Code Style:** All modified or newly created Lua files MUST be formatted using `stylua` to ensure consistent code styling.
+*   **Validation:** Remind the user to run `:checkhealth` or `:Lazy` inside Neovim after adding new tools or plugins to ensure dependencies are correctly installed.
