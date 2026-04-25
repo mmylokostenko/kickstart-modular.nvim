@@ -66,3 +66,9 @@ When AI agents (like Gemini) interact with this repository, they MUST adhere to 
     *   Place custom global keymaps in `lua/keymaps.lua` (or within the respective plugin spec if they are plugin-specific).
 *   **Code Style:** All modified or newly created Lua files MUST be formatted using `stylua` to ensure consistent code styling.
 *   **Validation:** Remind the user to run `:checkhealth` or `:Lazy` inside Neovim after adding new tools or plugins to ensure dependencies are correctly installed.
+*   **Git Usage:**
+    *   Do NOT stage or commit changes unless explicitly requested by the user.
+    *   When asked to commit, always perform a `git status` and `git diff` first to review changes.
+    *   Use clear, concise commit messages following [Conventional Commits](https://www.conventionalcommits.org/).
+    *   Atomic commits are preferred; group related changes together.
+    *   NEVER push changes to a remote repository without explicit permission.
