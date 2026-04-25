@@ -1,7 +1,8 @@
-# kickstart.nvim
+# kickstart-modular.nvim
 
 ## Project Overview
-`kickstart.nvim` is a starting point for Neovim configuration. It is designed to be small, single-file (primarily), and completely documented. It serves as a foundation for users to build their own custom Neovim setup, rather than acting as a full-fledged Neovim distribution. The project relies on `lazy.nvim` for plugin management and integrates standard, modern Neovim tools like Telescope, Treesitter, and native LSP.
+
+`kickstart-modular.nvim` is a starting point for Neovim configuration. It is designed to be small, single-file (primarily), and completely documented. It serves as a foundation for users to build their own custom Neovim setup, rather than acting as a full-fledged Neovim distribution. The project relies on `lazy.nvim` for plugin management and integrates standard, modern Neovim tools like Telescope, Treesitter, and native LSP.
 
 ## Key Technologies
 *   **Neovim:** Targets the latest 'stable' or 'nightly' versions.
@@ -15,10 +16,15 @@
     *   `saghen/blink.cmp` (Auto-completion)
 
 ## Directory Structure & Architecture
-*   `init.lua`: The heart of the configuration. Contains standard Neovim options (`vim.o`), basic keymaps, autocommands, and the `lazy.nvim` setup block where all default plugins are declared and configured.
-*   `lua/kickstart/plugins/`: Contains modularized configurations for optional plugins (e.g., `lint.lua`, `debug.lua`, `gitsigns.lua`). These can be uncommented and included in `init.lua`.
-*   `lua/custom/plugins/`: A designated directory for users to add their own plugin configuration files (e.g., `init.lua`, `catppuccin.lua`). Files here are automatically imported by `lazy.nvim` in `init.lua` without causing upstream merge conflicts.
-*   `.stylua.toml`: Configuration for the `stylua` formatter, which enforces Lua code style conventions across the project.
+*   `init.lua`: The entry point. It bootstraps the configuration by requiring modular components in the correct order.
+*   `lua/options.lua`: Standard Neovim options (`vim.opt`).
+*   `lua/keymaps.lua`: Basic, non-plugin keymaps.
+*   `lua/lazy-bootstrap.lua`: Logic to automatically install `lazy.nvim` if missing.
+*   `lua/lazy-plugins.lua`: The core plugin configuration file. It manages the `lazy.nvim` setup and imports all plugin specifications.
+*   `lua/kickstart/plugins/`: Modularized configurations for core/optional plugins (e.g., `lspconfig.lua`, `telescope.lua`).
+*   `lua/custom/plugins/`: A designated directory for users to add their own plugin specifications. These are automatically imported in `lua/lazy-plugins.lua`.
+*   `lua/custom/autocmd.lua`: Custom autocommands for improved workflow and automation.
+*   `.stylua.toml`: Configuration for the `stylua` formatter.
 
 ## Development & Usage
 ### Installation / Running
