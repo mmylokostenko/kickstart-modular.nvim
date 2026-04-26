@@ -18,6 +18,7 @@ return {
           nvimtree = true,
           treesitter = true,
           notify = false,
+          snacks = true,
           mini = {
             enabled = true,
             indentscope_color = '',
