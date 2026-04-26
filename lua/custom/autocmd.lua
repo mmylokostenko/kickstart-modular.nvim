@@ -12,10 +12,10 @@ vim.api.nvim_create_autocmd('BufReadPost', {
   callback = function(event)
     local exclude = { 'gitcommit' }
     local buf = event.buf
-    if vim.tbl_contains(exclude, vim.bo[buf].filetype) or vim.b[buf].lazyvim_last_loc then
+    if vim.tbl_contains(exclude, vim.bo[buf].filetype) or vim.b[buf].kickstart_last_loc then
       return
     end
-    vim.b[buf].lazyvim_last_loc = true
+    vim.b[buf].kickstart_last_loc = true
     local mark = vim.api.nvim_buf_get_mark(buf, '"')
     local lcount = vim.api.nvim_buf_line_count(buf)
     if mark[1] > 0 and mark[1] <= lcount then
@@ -30,12 +30,16 @@ vim.api.nvim_create_autocmd('BufEnter', { command = [[set formatoptions-=cro]] }
 -- Templates
 vim.api.nvim_create_autocmd('BufNewFile', {
   pattern = { '*.sh' },
-  command = '0r ~/.config/nvim/templates/bash.sh',
+  callback = function()
+    vim.cmd('0r ' .. vim.fn.stdpath('config') .. '/templates/bash.sh')
+  end,
 })
 
 vim.api.nvim_create_autocmd('BufNewFile', {
   pattern = { '*.md' },
-  command = '0r ~/.config/nvim/templates/markdown_template.md',
+  callback = function()
+    vim.cmd('0r ' .. vim.fn.stdpath('config') .. '/templates/markdown_template.md')
+  end,
 })
 
 -- wrap and check for spell in text filetypes
