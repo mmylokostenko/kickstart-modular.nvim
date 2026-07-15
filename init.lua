@@ -84,12 +84,11 @@ I hope you enjoy your Neovim journey,
 P.S. You can delete this when you're done too. It's your config now! :)
 --]]
 
-
 -- [[ Setting options ]]
-require('options')
+require 'options'
 
 -- [[ Basic Keymaps ]]
-require('keymaps')
+require 'keymaps'
 
 -- [[ Set up vim.pack ]]
 require 'pack'
@@ -98,7 +97,7 @@ require 'pack'
 require 'plugins'
 
 -- [[ Custom Autocommands ]]
-require('custom.autocmd')
+require 'custom.autocmd'
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
