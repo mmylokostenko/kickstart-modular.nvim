@@ -32,5 +32,4 @@ require('yazi').setup {
 }
 
 vim.keymap.set('n', '<leader>e', '<cmd>Yazi<cr>', { desc = 'Open yazi at the current file' })
-vim.keymap.set('n', '<leader>y', '<cmd>Yazi<cr>', { desc = 'Open yazi at the current file' })
 vim.keymap.set('n', '<leader>-', '<cmd>Yazi toggle<cr>', { desc = 'Resume the last yazi session' })

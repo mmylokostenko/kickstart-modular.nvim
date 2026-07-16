@@ -1,6 +1,10 @@
 -- Enable faster startup by caching compiled Lua modules
 vim.loader.enable()
 
+-- Suppress vim.F.if_nil deprecation warning (used by many older plugins)
+vim.F = vim.F or {}
+vim.F.if_nil = function(a, b) return a ~= nil and a or b end
+
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)

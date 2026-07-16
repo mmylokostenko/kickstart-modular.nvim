@@ -60,6 +60,18 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
 -- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
 
+-- Save file
+vim.keymap.set({ 'n', 'i', 'x' }, '<C-s>', '<cmd>w<CR>', { desc = 'Save file' })
+
+-- Switch buffers
+vim.keymap.set('n', '<S-l>', '<cmd>bnext<CR>', { desc = 'Next buffer' })
+vim.keymap.set('n', '<S-h>', '<cmd>bprevious<CR>', { desc = 'Previous buffer' })
+
+-- Buffer management
+vim.keymap.set('n', '<leader>bf', '<cmd>bfirst<CR>', { desc = '[B]uffer [F]irst' })
+vim.keymap.set('n', '<leader>bl', '<cmd>blast<CR>', { desc = '[B]uffer [L]ast' })
+vim.keymap.set('n', '<leader>bw', '<cmd>bwipeout<CR>', { desc = '[B]uffer [W]ipeout' })
+vim.keymap.set('n', '<leader>bn', '<cmd>enew<CR>', { desc = '[B]uffer [N]ew' })
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
@@ -69,7 +81,7 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
-  callback = function() vim.hl.on_yank() end,
+  callback = function() vim.highlight.on_yank() end,
 })
 
 -- vim: ts=2 sts=2 sw=2 et
