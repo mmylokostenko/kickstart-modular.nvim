@@ -29,7 +29,7 @@ vim.diagnostic.config {
   },
 }
 
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [L]ocation list' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -37,7 +37,8 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 --
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+-- vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+vim.keymap.set('t', '<C-`>', [[<C-\><C-n>:q<CR>]], { silent = true, desc = 'Exit terminal mode' })
 
 -- TIP: Disable arrow keys in normal mode
 -- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
@@ -72,6 +73,13 @@ vim.keymap.set('n', '<leader>bf', '<cmd>bfirst<CR>', { desc = '[B]uffer [F]irst'
 vim.keymap.set('n', '<leader>bl', '<cmd>blast<CR>', { desc = '[B]uffer [L]ast' })
 vim.keymap.set('n', '<leader>bw', '<cmd>bwipeout<CR>', { desc = '[B]uffer [W]ipeout' })
 vim.keymap.set('n', '<leader>bn', '<cmd>enew<CR>', { desc = '[B]uffer [N]ew' })
+
+-- Normal Mode: Toggle comment for the current line
+vim.keymap.set('n', '<C-/>', 'gcc', { remap = true, silent = true, desc = 'Toggle comment' })
+
+-- Visual Mode: Toggle comment for selected lines
+vim.keymap.set('v', '<C-/>', 'gc', { remap = true, silent = true, desc = 'Toggle comment selection' })
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 

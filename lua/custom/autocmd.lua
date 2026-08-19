@@ -18,17 +18,28 @@ vim.api.nvim_create_autocmd('BufReadPost', {
 })
 
 -- Don't auto comment new line
-vim.api.nvim_create_autocmd('BufEnter', { command = [[set formatoptions-=cro]] })
+vim.api.nvim_create_autocmd('FileType', {
+  group = augroup 'no_auto_comment',
+  pattern = '*',
+  callback = function() vim.opt_local.formatoptions:remove { 'c', 'r', 'o' } end,
+})
 
--- Templates
+-- Templates (safely read template only if it exists)
+local function load_template(rel_path)
+  local path = vim.fs.joinpath(vim.fn.stdpath 'config', 'templates', rel_path)
+  if vim.uv.fs_stat(path) then vim.cmd('0r ' .. vim.fn.fnameescape(path)) end
+end
+
 vim.api.nvim_create_autocmd('BufNewFile', {
+  group = augroup 'templates',
   pattern = { '*.sh' },
-  callback = function() vim.cmd('0r ' .. vim.fn.stdpath 'config' .. '/templates/bash.sh') end,
+  callback = function() load_template 'bash.sh' end,
 })
 
 vim.api.nvim_create_autocmd('BufNewFile', {
+  group = augroup 'templates',
   pattern = { '*.md' },
-  callback = function() vim.cmd('0r ' .. vim.fn.stdpath 'config' .. '/templates/markdown_template.md') end,
+  callback = function() load_template 'markdown_template.md' end,
 })
 
 -- wrap and check for spell in text filetypes
@@ -41,14 +52,17 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
--- Quit with q
+-- Quit with q (for ephemeral/preview windows, excluding gitcommit)
 vim.api.nvim_create_autocmd('FileType', {
   group = augroup 'quit_with_q',
   pattern = {
-    'lspinfo',
-    'git*',
+    'checkhealth',
     'help',
+    'lspinfo',
+    'man',
     'notify',
+    'qf',
+    'startuptime',
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false

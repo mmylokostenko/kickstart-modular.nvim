@@ -11,4 +11,4 @@ require('luna').setup {
 }
 
 -- Activate the colorscheme
-vim.cmd.colorscheme 'luna'
+-- vim.cmd.colorscheme 'luna'

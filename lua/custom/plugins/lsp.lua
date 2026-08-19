@@ -16,12 +16,10 @@ local servers = {
 
 -- Ensure these servers and tools are installed via mason-tool-installer
 local ensure_installed = vim.tbl_keys(servers)
-table.insert(ensure_installed, 'ty') -- User preferred Python tool
+table.insert(ensure_installed, 'ruff') -- User preferred Python linter/formatter
 
 local ok, mti = pcall(require, 'mason-tool-installer')
-if ok then
-  mti.check_install(ensure_installed)
-end
+if ok then mti.check_install(ensure_installed) end
 
 -- Hook into the native LSP configuration logic
 for name, server in pairs(servers) do

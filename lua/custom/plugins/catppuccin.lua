@@ -25,4 +25,4 @@ require('catppuccin').setup {
 }
 
 -- Setup must be called before loading colorscheme
--- vim.cmd.colorscheme 'catppuccin'
+vim.cmd.colorscheme 'catppuccin'

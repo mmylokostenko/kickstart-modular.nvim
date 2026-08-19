@@ -43,8 +43,7 @@ vim.keymap.set('n', '<leader>gl', function() Snacks.lazygit.log() end, { desc = 
 vim.keymap.set('n', '<leader>cR', function() Snacks.rename.rename_file() end, { desc = 'Rename File' })
 pcall(vim.keymap.del, 'n', '<leader><leader>')
 vim.keymap.set('n', '<leader><leader>', function() Snacks.picker.buffers() end, { desc = '[ ] Find existing buffers (Snacks)' })
-vim.keymap.set('n', '<c-/>', function() Snacks.terminal() end, { desc = 'Toggle Terminal' })
-vim.keymap.set('n', '<c-_>', function() Snacks.terminal() end, { desc = 'which_key_ignore' })
+vim.keymap.set('n', '<c-`>', function() Snacks.terminal() end, { desc = 'Toggle Terminal' })
 vim.keymap.set({ 'n', 't' }, ']]', function() Snacks.words.jump(vim.v.count1) end, { desc = 'Next Reference' })
 vim.keymap.set({ 'n', 't' }, '[[', function() Snacks.words.jump(-vim.v.count1) end, { desc = 'Prev Reference' })
 vim.keymap.set(
