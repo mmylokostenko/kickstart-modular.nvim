@@ -172,7 +172,23 @@ require('mason-lspconfig').setup {
 -- You can press `g?` for help in this menu.
 local ensure_installed = vim.tbl_keys(servers or {})
 vim.list_extend(ensure_installed, {
+  'asm-lsp',
+  'bash-language-server',
+  'clangd',
+  'css-lsp',
+  'jq',
+  'json-lsp',
+  'jsonnet-language-server',
+  'lua-language-server',
+  'luacheck',
+  'markdownlint',
+  'marksman',
+  'ruff', -- Used to format Python code
+  'shellcheck',
   'stylua', -- Used to format Lua code
+  'taplo',
+  'ty',
+  'uv',
 })
 
 require('mason-tool-installer').setup { ensure_installed = ensure_installed }
